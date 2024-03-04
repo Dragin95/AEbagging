@@ -1,1 +1,0 @@
-This is an ensemble deep learning model (AEbagging) for laboratory earthquake detection and phase picking, with many improvements still to be made to the current model. If we can incorporate diverse AE datasets into our model, it not only enhances the robustness of the model but also removes the constraints imposed by signal-to-noise ratio.
