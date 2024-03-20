@@ -137,6 +137,34 @@ class TransformerWidth(nn.Module):
         e = self.layernorm(e)
         e = e.permute(1, 2, 0)
         return e 
+        
+## mask tensor was added at the label
+# class Transformer(nn.Module):
+#     def __init__(self, width=None, ) -> None:
+#         super().__init__()
+#         encoder_layer = nn.TransformerEncoderLayer(d_model=96, nhead=3)
+#         self.transformer = nn.TransformerEncoder(encoder_layer, num_layers=1)
+#         self.layernorm = nn.LayerNorm(96)
+#         self.width = width 
+#     def forward(self, x, label_position=None):
+#         x = x.permute(2, 0, 1)
+#         T, B, C = x.shape 
+#         if self.width == None:
+#             e = self.transformer(x)
+#         else:
+#             mk = torch.diag(torch.ones(T, dtype=x.dtype, device=x.device))
+#             for i in range((self.width-1)//2):
+#                 start_idx = max(0, label_position - (self.width - 1) // 2)
+#                 end_idx = min(T, label_position + (self.width + 1) // 2)
+#                 idx = torch.arange(start_idx, end_idx, dtype=torch.long, device=x.device)
+#                 mk[idx, label_position] = 1
+#                 mk[label_position, idx] = 1
+#             mk = mk.masked_fill(mk == 0, float('-inf')).masked_fill(mk == 1, float(0.0))
+#             e = self.transformer(x, mk)
+#             e = self.layernorm(e)
+#         e = e.permute(1, 2, 0)
+#         return e 
+
 class RNN(nn.Module):
     def __init__(self, nin=64, nout=96) -> None:
         super().__init__() 
