@@ -140,7 +140,7 @@ class TransformerWidth(nn.Module):
         
 ## mask tensor was added at the label
 # class Transformer(nn.Module):
-#     def __init__(self, width=None, ) -> None:
+#     def __init__(self, width=None) -> None:
 #         super().__init__()
 #         encoder_layer = nn.TransformerEncoderLayer(d_model=96, nhead=3)
 #         self.transformer = nn.TransformerEncoder(encoder_layer, num_layers=1)
